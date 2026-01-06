@@ -80,7 +80,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    dotDir = "."; # So config goes to ~/.zshrc, not ~/.config/zsh/.zshrc
+    dotDir = "/Users/gareth"; # So config goes to ~/.zshrc, not ~/.config/zsh/.zshrc
     shellAliases = {
       k = "kubectl";
       a = "argocd";
@@ -99,12 +99,16 @@
   # Git configuration
   programs.git = {
     enable = true;
-    userName = "Gareth Fong";
-    userEmail = "gareth@example.com";
-    aliases = {
-      co = "checkout";
-      ci = "commit";
-      st = "status";
+    settings = {
+      user = {
+        name = "Gareth Fong";
+        email = "gareth@example.com";
+      };
+      alias = {
+        co = "checkout";
+        ci = "commit";
+        st = "status";
+      };
     };
   };
 
