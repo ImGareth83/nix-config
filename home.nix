@@ -102,7 +102,7 @@
     settings = {
       user = {
         name = "Gareth Fong";
-        email = "gareth@example.com";
+        email = "garethfong@icloud.com";
       };
       alias = {
         co = "checkout";
