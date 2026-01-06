@@ -108,6 +108,7 @@
         co = "checkout";
         ci = "commit";
         st = "status";
+        lg = "log --oneline --decorate --graph --all";
       };
     };
   };
