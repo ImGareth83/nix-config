@@ -26,6 +26,8 @@
     jdk21
     gradle
     maven
+    vscode
+    jiratui
   ];
 
   home.sessionVariables = {
@@ -100,6 +102,7 @@
   programs.git = {
     enable = true;
     settings = {
+      init.defaultBranch = "main";
       user = {
         name = "Gareth Fong";
         email = "garethfong@icloud.com";
