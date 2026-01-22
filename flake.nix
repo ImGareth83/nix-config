@@ -28,7 +28,20 @@
       {
        nixpkgs.hostPlatform = system;
        nixpkgs.config.allowUnfree = true;
-       nix.settings.experimental-features = "nix-command flakes";
+       nix.settings = {
+         experimental-features = "nix-command flakes";
+       };
+       
+       # Automatic store optimization
+       nix.optimise.automatic = true;
+       
+       # Automatic garbage collection
+       nix.gc = {
+         automatic = true;
+         interval = { Hour = 3; Minute = 15; }; # Run daily at 3:15 AM
+         options = "--delete-older-than 30d";
+       };
+       
        system.stateVersion = 6;
        system.primaryUser = "gareth";
        system.configurationRevision = self.rev or self.dirtyRev or null;
