@@ -54,6 +54,7 @@
     	brews = [
          "watch"
          "openssl"
+         "mas"
       ];
       
       casks = [
