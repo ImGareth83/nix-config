@@ -68,16 +68,14 @@
          "watch"
          "openssl"
          "mas"
+         "bitwarden-cli"
       ];
       
       casks = [
-        #"brave"
-        #"chatgpt"
-        #"code-cursor"
-        #"itsycal"
-        #"figma"
-        #"drawio"
-        #"bitwarden"
+        "brave-browser"
+        "chatgpt"
+        "itsycal"
+        "drawio"
         "maccy"
       ];
         
