@@ -9,41 +9,6 @@
   home.stateVersion = "24.05"; # Match your nixpkgs version
 
   # ============================================================================
-  # User packages
-  # ============================================================================
-  home.packages = with pkgs; [
-    # CLI utilities
-    bat        # prettier `cat`
-    fd         # simpler `find`
-    git
-    jq
-    tmux
-    tree
-    
-    # Zsh plugins
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    
-    # Cloud/DevOps tools
-    awscli2
-    kubectl
-    argocd
-    
-    # Development tools
-    nodejs_22
-    pnpm
-    jdk21
-    gradle
-    maven
-    
-    # Applications
-    dbeaver-bin
-    code-cursor
-    vscode
-    jiratui
-  ];
-
-  # ============================================================================
   # Environment Variables
   # ============================================================================
   home.sessionVariables = {
@@ -87,90 +52,19 @@
   '';
 
   # ============================================================================
-  # Dotfiles Management
+  # Module Arguments
   # ============================================================================
-  home.file.".aws/config" = {
-    source = inputs.secrets + "/aws/config";
-  };
-
-  home.file.".aws/credentials" = { 
-    source = inputs.secrets + "/aws/credentials";
-  };
+  # Pass inputs to imported modules via _module.args
+  _module.args.inputs = inputs;
 
   # ============================================================================
-  # Program Configurations
+  # Module Imports
   # ============================================================================
-  
-  # Shell configuration (Zsh)
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    # Use absolute path constructed from homeDirectory to avoid deprecation warning
-    dotDir = "${config.home.homeDirectory}"; # So config goes to ~/.zshrc, not ~/.config/zsh/.zshrc
-    shellAliases = {
-      k = "kubectl";
-      a = "argocd";
-      ll = "ls -golah";  # Moved from initContent to shellAliases (proper location)
-    };
-    # Use initContent instead of deprecated initExtra
-    initContent = ''
-      export PATH="$HOME/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
-      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-      source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-     # echo "[ZSH INIT] Loaded by Home Manager"
-    '';
-
-  };
-
-  # Git configuration
-  programs.git = {
-    enable = true;
-    settings = {
-      init.defaultBranch = "main";
-      user = {
-        name = "Gareth Fong";
-        email = "garethfong@icloud.com";
-      };
-      alias = {
-        co = "checkout";
-        ci = "commit";
-        st = "status";
-        lg = "log --oneline --decorate --graph --all";
-      };
-    };
-  };
-
-  programs.neovim = {
-    enable = true;
-    extraConfig = ''
-      set et
-      set ts=2
-      set sw=2
-      set sts=2
-      set si
-      set ic
-      set bg=dark
-      set nu
-      set cursorline
-      set cursorcolumn
-      highlight CursorLine ctermbg=darkgrey guibg=#333333
-      highlight CursorColumn ctermbg=darkgrey guibg=#333333
-    '';
-  };
-
-  # ============================================================================
-  # Additional Dotfiles
-  # ============================================================================
-  home.file.".vimrc".text = ''
-    set number
-    syntax on
-    set tabstop=2 shiftwidth=2 expandtab
-  '';
-
-  home.file.".tmux.conf".text = ''
-    set -g mouse on
-    set -g history-limit 10000
-    setw -g mode-keys vi
-  '';
+  imports = [
+    ./modules/packages.nix
+    ./modules/shell.nix
+    ./modules/programs.nix
+    ./modules/neovim.nix
+    ./modules/dotfiles.nix
+  ];
 }
-
