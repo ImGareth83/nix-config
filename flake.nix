@@ -31,6 +31,8 @@
     darwinConfigurations."mbp" = nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
+      # Import Homebrew configuration from separate module
+      ./homebrew.nix
       {
        # ========================================================================
        # Nix Configuration
@@ -59,45 +61,6 @@
        system.configurationRevision = self.rev or self.dirtyRev or null;
 
        environment.systemPackages = with pkgs; [ mkalias ];
-
-       # ========================================================================
-       # Homebrew Configuration
-       # ========================================================================
-       homebrew = {
-        enable = true;
-        onActivation.autoUpdate = true;
-        onActivation.upgrade = true;
-
-       masApps = {
-        "Amphetamine" = 937984704;
-        "Whatsapp" = 310633997;
-        "Wechat" = 836500024;
-        "Telegram" = 747648890;
-        "moomoo" = 1482713641;
-        "Slack" = 803453959;
-        "Magnet" = 441258766;
-       };
-
-    	brews = [
-         "watch"
-         "openssl"
-         "mas"
-         "bitwarden-cli"
-      ];
-      
-      casks = [
-        "brave-browser"
-        "chatgpt"
-        "itsycal"
-        "drawio"
-        "maccy"
-      ];
-        
-	#taps = [
-        # "homebrew/cask-fonts"
-        #];
-        
-       };
       }
       
       # ========================================================================
