@@ -1,6 +1,9 @@
 {
   description = "Gareth's nix-darwin";
 
+  # ============================================================================
+  # Flake Inputs
+  # ============================================================================
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:lnl7/nix-darwin";
@@ -15,6 +18,9 @@
 
   };
 
+  # ============================================================================
+  # Flake Outputs
+  # ============================================================================
   outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, ... }:
   let
     system = "aarch64-darwin";
@@ -26,6 +32,9 @@
       inherit system;
       modules = [
       {
+       # ========================================================================
+       # Nix Configuration
+       # ========================================================================
        nixpkgs.hostPlatform = system;
        nixpkgs.config.allowUnfree = true;
        nix.settings = {
@@ -42,13 +51,18 @@
          options = "--delete-older-than 30d";
        };
        
+       # ========================================================================
+       # System Configuration
+       # ========================================================================
        system.stateVersion = 6;
        system.primaryUser = "gareth";
        system.configurationRevision = self.rev or self.dirtyRev or null;
 
        environment.systemPackages = with pkgs; [ mkalias ];
 
-       # Homebrew module
+       # ========================================================================
+       # Homebrew Configuration
+       # ========================================================================
        homebrew = {
         enable = true;
         onActivation.autoUpdate = true;
@@ -86,7 +100,9 @@
        };
       }
       
-      # Enable Home Manager as a module
+      # ========================================================================
+      # Home Manager Integration
+      # ========================================================================
       home-manager.darwinModules.home-manager
       {
        home-manager.useGlobalPkgs = true;
