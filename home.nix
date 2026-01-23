@@ -1,12 +1,16 @@
 { pkgs, lib, inputs, ... }:
 
 {
+  # ============================================================================
+  # Basic Configuration
+  # ============================================================================
   home.username = "gareth";
   home.homeDirectory = "/Users/gareth";
   home.stateVersion = "24.05"; # Match your nixpkgs version
 
-
+  # ============================================================================
   # User packages
+  # ============================================================================
   home.packages = with pkgs; [
     # CLI utilities
     bat        # prettier `cat`
@@ -39,12 +43,17 @@
     jiratui
   ];
 
+  # ============================================================================
+  # Environment Variables
+  # ============================================================================
   home.sessionVariables = {
     EDITOR = "nvim";
     JAVA_HOME = "${pkgs.jdk21}";
   };
 
-
+  # ============================================================================
+  # Activation Scripts
+  # ============================================================================
   home.activation.finderDefaults = lib.hm.dag.entryAfter ["writeBoundary"] ''
     echo "🔧 Applying custom Finder settings..."
 
@@ -77,7 +86,9 @@
     /usr/bin/killall Finder || true
   '';
 
-
+  # ============================================================================
+  # Dotfiles Management
+  # ============================================================================
   home.file.".aws/config" = {
     source = inputs.secrets + "/aws/config";
   };
@@ -86,7 +97,10 @@
     source = inputs.secrets + "/aws/credentials";
   };
 
-
+  # ============================================================================
+  # Program Configurations
+  # ============================================================================
+  
   # Shell configuration (Zsh)
   programs.zsh = {
     enable = true;
@@ -143,7 +157,9 @@
     '';
   };
 
-  # Dotfiles
+  # ============================================================================
+  # Additional Dotfiles
+  # ============================================================================
   home.file.".vimrc".text = ''
     set number
     syntax on
