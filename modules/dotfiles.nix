@@ -25,5 +25,7 @@
     set -g mouse on
     set -g history-limit 10000
     setw -g mode-keys vi
+    set -g set-clipboard on
+    bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "/usr/bin/pbcopy"
   '';
 }
