@@ -105,14 +105,13 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    dotDir = "/Users/gareth"; # So config goes to ~/.zshrc, not ~/.config/zsh/.zshrc
+    dotDir = "."; # So config goes to ~/.zshrc, not ~/.config/zsh/.zshrc
     shellAliases = {
       k = "kubectl";
       a = "argocd";
       ll = "ls -golah";  # Moved from initContent to shellAliases (proper location)
     };
-    #initExtra = ''
-    initContent = ''
+    initExtra = ''
       export PATH="$HOME/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
