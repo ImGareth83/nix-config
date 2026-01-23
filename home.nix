@@ -95,11 +95,11 @@
     shellAliases = {
       k = "kubectl";
       a = "argocd";
+      ll = "ls -golah";  # Moved from initContent to shellAliases (proper location)
     };
     #initExtra = ''
     initContent = ''
       export PATH="$HOME/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
-      alias ll="ls -golah"
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
      # echo "[ZSH INIT] Loaded by Home Manager"
