@@ -1,11 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
+let
+  # Feature flags - easily toggle package groups
+  enableDevTools = true;
+  enableCloudTools = true;
+  enableGUIApps = pkgs.stdenv.isDarwin;  # Only on macOS
+in
 {
   # ============================================================================
   # User packages
   # ============================================================================
   home.packages = with pkgs; [
-    # CLI utilities
+    # CLI utilities (always included)
     bat        # prettier `cat`
     fd         # simpler `find`
     git
@@ -13,25 +19,28 @@
     tmux
     tree
     
-    # Zsh plugins
+    # Zsh plugins (always included)
     zsh-autosuggestions
     zsh-syntax-highlighting
-    
-    # Cloud/DevOps tools
+  ]
+  # Cloud/DevOps tools (conditional)
+  ++ lib.optionals enableCloudTools [
     awscli2
     kubectl
     argocd
-    
-    # Development tools
+  ]
+  # Development tools (conditional)
+  ++ lib.optionals enableDevTools [
     nodejs_22
     pnpm
     jdk21
     gradle
     maven
-    
-    # Applications
+  ]
+  # GUI Applications (only on macOS)
+  ++ lib.optionals enableGUIApps [
     dbeaver-bin
-    code-cursor
+    code-cursor  # Package name is code-cursor, but executable is 'cursor'
     vscode
     jiratui
   ];
