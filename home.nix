@@ -6,26 +6,35 @@
   home.stateVersion = "24.05"; # Match your nixpkgs version
 
 
-  # CLI tools (user-scoped)
+  # User packages
   home.packages = with pkgs; [
+    # CLI utilities
     bat        # prettier `cat`
     fd         # simpler `find`
     git
     jq
     tmux
     tree
+    
+    # Zsh plugins
     zsh-autosuggestions
     zsh-syntax-highlighting
+    
+    # Cloud/DevOps tools
     awscli2
     kubectl
     argocd
-    dbeaver-bin
+    
+    # Development tools
     nodejs_22
     pnpm
-    code-cursor
     jdk21
     gradle
     maven
+    
+    # Applications
+    dbeaver-bin
+    code-cursor
     vscode
     jiratui
   ];
