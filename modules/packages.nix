@@ -36,6 +36,7 @@ in
     jdk21
     gradle
     maven
+    codex
   ]
   # GUI Applications (only on macOS)
   ++ lib.optionals enableGUIApps [
