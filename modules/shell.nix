@@ -13,6 +13,7 @@
       k = "kubectl";
       a = "argocd";
       ll = "ls -golah";  # Moved from initContent to shellAliases (proper location)
+      "~" = "cd ~";
     };
     # Use initContent instead of deprecated initExtra
     initContent = ''
