@@ -22,6 +22,7 @@ in
     # Zsh plugins (always included)
     zsh-autosuggestions
     zsh-syntax-highlighting
+    zsh-z
   ]
   # Cloud/DevOps tools (conditional)
   ++ lib.optionals enableCloudTools [
