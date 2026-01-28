@@ -16,6 +16,7 @@ in
     fd         # simpler `find`
     git
     jq
+    pandoc
     tmux
     tree
     
