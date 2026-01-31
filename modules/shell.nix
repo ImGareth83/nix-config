@@ -14,6 +14,7 @@
       a = "argocd";
       ll = "ls -golah";  # Moved from initContent to shellAliases (proper location)
       "~" = "cd ~";
+      workspace = "cd /Users/gareth";
     };
     # Use initContent instead of deprecated initExtra
     initContent = ''
