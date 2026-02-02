@@ -15,6 +15,8 @@
       ll = "ls -golah";  # Moved from initContent to shellAliases (proper location)
       "~" = "cd ~";
       workspace = "cd /Users/gareth/workspace";
+      phillip = "cd /Users/gareth/workspace/phillip";
+      learn = "cd /Users/gareth/workspace/learn";
     };
     # Use initContent instead of deprecated initExtra
     initContent = ''
