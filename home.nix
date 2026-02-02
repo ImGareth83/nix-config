@@ -19,6 +19,7 @@
     XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
     XDG_STATE_HOME = "${config.home.homeDirectory}/.local/state";
     HOMEBREW_AUTO_UPDATE_SECS = "86400"; # once per day
+    PATH = "/Library/TeX/texbin:$PATH";
   };
 
   # ============================================================================

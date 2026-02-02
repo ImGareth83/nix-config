@@ -32,6 +32,7 @@
       "itsycal"
       "drawio"
       "maccy"
+      "mactex"
     ];
       
     #taps = [
