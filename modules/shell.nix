@@ -23,6 +23,7 @@
       export PATH="$HOME/bin:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin:$PATH"
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      source ${pkgs.zsh-z}/share/zsh-z/zsh-z.plugin.zsh
       
       # CASE-INSENSITIVE AUTOCOMPLETE
       autoload -Uz compinit && compinit

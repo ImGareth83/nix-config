@@ -28,6 +28,14 @@
     pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
 
   in {
+    homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        ./home.nix
+      ];
+      extraSpecialArgs = { inherit inputs; };
+    };
+
     darwinConfigurations."mbp" = nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
