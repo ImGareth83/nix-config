@@ -28,6 +28,7 @@
     
     casks = [
       "brave-browser"
+      "codex"
       "chatgpt"
       "itsycal"
       "drawio"

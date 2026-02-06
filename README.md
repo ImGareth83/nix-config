@@ -36,10 +36,10 @@ From the root of this repo:
 If you have made **pure Home Manager / user-level changes** (e.g. shell, editor, dotfiles) and do **not** want to rebuild the whole system, you can activate just the Home Manager part:
 
 ```bash
-home-manager switch --flake .#gareth@mbp
+home-manager switch --flake .#gareth
 ```
 
-This assumes your Home Manager configuration is exported under the `gareth@mbp` user profile in the flake (matching `home.username = "gareth";` and host `mbp`).
+This assumes your Home Manager configuration is exported under the `gareth` profile in the flake (matching `home.username = "gareth";`).
 
 ## Updating inputs (nixpkgs, home-manager, etc.)
 
@@ -63,4 +63,3 @@ darwin-rebuild switch --flake .#mbp
   ```bash
   nix-collect-garbage -d
   ```
-
