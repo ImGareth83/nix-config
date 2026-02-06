@@ -25,6 +25,14 @@
   # ============================================================================
   # Activation Scripts
   # ============================================================================
+  # Install Nerd Fonts (and other profile fonts) into ~/Library/Fonts on macOS
+  home.activation.installFonts = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    if [ -d "$HOME/.nix-profile/share/fonts" ]; then
+      echo "🔤 Installing fonts to ~/Library/Fonts..."
+      find "$HOME/.nix-profile/share/fonts" -type f \( -name "*.otf" -o -name "*.ttf" \) -exec ln -sfn {} "$HOME/Library/Fonts/" \;
+    fi
+  '';
+
   home.activation.finderDefaults = lib.hm.dag.entryAfter ["writeBoundary"] ''
     echo "🔧 Applying custom Finder settings..."
 
