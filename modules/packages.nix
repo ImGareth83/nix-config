@@ -11,12 +11,16 @@ in
   # User packages
   # ============================================================================
   home.packages = with pkgs; [
+    # Fonts (Nerd Font for terminal/Neovim icons)
+    meslo-lgs-nf
+
     # CLI utilities (always included)
     bat        # prettier `cat`
     fd         # simpler `find`
     git
     jq
     pandoc
+    tldr
     tmux
     tree
     
