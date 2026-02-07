@@ -23,6 +23,7 @@ in
     plugins = with pkgs.vimPlugins; [
       nvim-treesitter
       nvim-web-devicons
+      flash-nvim
       render-markdown-nvim
     ];
 
@@ -55,6 +56,16 @@ in
       local ok_rm, render_md = pcall(require, 'render-markdown')
       if ok_rm and render_md then
         render_md.setup({})
+      end
+
+      local ok_flash, flash = pcall(require, 'flash')
+      if ok_flash and flash then
+        flash.setup({})
+        vim.keymap.set({ 'n', 'x', 'o' }, 's', function() flash.jump() end, { desc = 'Flash' })
+        vim.keymap.set({ 'n', 'x', 'o' }, 'S', function() flash.treesitter() end, { desc = 'Flash Treesitter' })
+        vim.keymap.set('o', 'r', function() flash.remote() end, { desc = 'Remote Flash' })
+        vim.keymap.set({ 'o', 'x' }, 'R', function() flash.treesitter_search() end, { desc = 'Treesitter Search' })
+        vim.keymap.set('c', '<c-s>', function() flash.toggle() end, { desc = 'Toggle Flash Search' })
       end
     '';
   };
