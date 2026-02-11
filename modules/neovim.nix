@@ -55,7 +55,7 @@ in
       end
 
       if type(vim.lsp) == 'table'
-        and type(vim.lsp.config) == 'function'
+        and vim.lsp.config ~= nil
         and type(vim.lsp.enable) == 'function'
       then
         if vim.fn.executable('sqls') == 1 then
@@ -79,6 +79,7 @@ in
           vim.lsp.config('postgres_lsp', {
             cmd = postgres_cmd,
             filetypes = { 'sql', 'postgres', 'pgsql' },
+            workspace_required = false,
           })
           vim.lsp.enable('postgres_lsp')
         end

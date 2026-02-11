@@ -24,6 +24,7 @@ in
     fd         # simpler `find`
     git
     jq
+    tree-sitter
     pandoc
     tldr
     tmux
