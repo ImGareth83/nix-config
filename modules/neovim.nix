@@ -66,24 +66,19 @@ in
           vim.lsp.enable('sqls')
         end
 
-        local postgres_cmd_candidates = {
-          'postgres_lsp',
-          'postgres-lsp',
-          'postgres-language-server',
-          'postgrestools',
-        }
         local postgres_cmd = nil
-        for _, candidate in ipairs(postgres_cmd_candidates) do
-          if vim.fn.executable(candidate) == 1 then
-            postgres_cmd = candidate
-            break
-          end
+        if vim.fn.executable('postgres-language-server') == 1 then
+          postgres_cmd = { 'postgres-language-server', 'lsp-proxy' }
+        elseif vim.fn.executable('postgres_lsp') == 1 then
+          postgres_cmd = { 'postgres_lsp' }
+        elseif vim.fn.executable('postgres-lsp') == 1 then
+          postgres_cmd = { 'postgres-lsp' }
         end
 
-        if postgres_cmd then
+        if postgres_cmd ~= nil then
           vim.lsp.config('postgres_lsp', {
-            cmd = { postgres_cmd },
-            filetypes = { 'postgres', 'pgsql' },
+            cmd = postgres_cmd,
+            filetypes = { 'sql', 'postgres', 'pgsql' },
           })
           vim.lsp.enable('postgres_lsp')
         end
