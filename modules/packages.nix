@@ -24,6 +24,7 @@ in
     fd         # simpler `find`
     git
     jq
+    ripgrep
     tree-sitter
     pandoc
     tldr
