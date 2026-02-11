@@ -49,5 +49,6 @@ in
     code-cursor  # Package name is code-cursor, but executable is 'cursor'
     vscode
     jiratui
+    pgadmin4
   ];
 }
