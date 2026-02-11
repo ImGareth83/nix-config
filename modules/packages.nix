@@ -5,6 +5,11 @@ let
   enableDevTools = true;
   enableCloudTools = true;
   enableGUIApps = pkgs.stdenv.isDarwin;  # Only on macOS
+  postgresLspPackage =
+    if builtins.hasAttr "postgres-language-server" pkgs then pkgs."postgres-language-server"
+    else if builtins.hasAttr "postgres-lsp" pkgs then pkgs."postgres-lsp"
+    else if builtins.hasAttr "postgresql-lsp" pkgs then pkgs."postgresql-lsp"
+    else null;
 in
 {
   # ============================================================================
@@ -36,13 +41,17 @@ in
     argocd
   ]
   # Development tools (conditional)
-  ++ lib.optionals enableDevTools [
-    nodejs_22
-    pnpm
-    jdk21
-    gradle
-    maven
-  ]
+  ++ lib.optionals enableDevTools (
+    [
+      nodejs_22
+      pnpm
+      jdk21
+      gradle
+      maven
+      sqls
+    ]
+    ++ lib.optionals (postgresLspPackage != null) [ postgresLspPackage ]
+  )
   # GUI Applications (only on macOS)
   ++ lib.optionals enableGUIApps [
     dbeaver-bin

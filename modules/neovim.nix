@@ -22,6 +22,7 @@ in
 
     plugins = with pkgs.vimPlugins; [
       nvim-treesitter
+      nvim-lspconfig
       nvim-web-devicons
       flash-nvim
       render-markdown-nvim
@@ -47,10 +48,45 @@ in
       local ok_ts, ts_configs = pcall(require, 'nvim-treesitter.configs')
       if ok_ts and ts_configs then
         ts_configs.setup({
-          ensure_installed = { 'markdown', 'markdown_inline' },
+          ensure_installed = { 'markdown', 'markdown_inline', 'sql' },
           highlight = { enable = true },
           auto_install = true,
         })
+      end
+
+      if type(vim.lsp) == 'table'
+        and type(vim.lsp.config) == 'function'
+        and type(vim.lsp.enable) == 'function'
+      then
+        if vim.fn.executable('sqls') == 1 then
+          vim.lsp.config('sqls', {
+            cmd = { 'sqls' },
+            filetypes = { 'sql' },
+          })
+          vim.lsp.enable('sqls')
+        end
+
+        local postgres_cmd_candidates = {
+          'postgres_lsp',
+          'postgres-lsp',
+          'postgres-language-server',
+          'postgrestools',
+        }
+        local postgres_cmd = nil
+        for _, candidate in ipairs(postgres_cmd_candidates) do
+          if vim.fn.executable(candidate) == 1 then
+            postgres_cmd = candidate
+            break
+          end
+        end
+
+        if postgres_cmd then
+          vim.lsp.config('postgres_lsp', {
+            cmd = { postgres_cmd },
+            filetypes = { 'postgres', 'pgsql' },
+          })
+          vim.lsp.enable('postgres_lsp')
+        end
       end
 
       local ok_rm, render_md = pcall(require, 'render-markdown')
