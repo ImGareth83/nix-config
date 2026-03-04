@@ -17,6 +17,7 @@
       "moomoo" = 1482713641;
       "Slack" = 803453959;
       "Magnet" = 441258766;
+      "cleanmykeyboard" = 6468120888;
     };
 
     brews = [
