@@ -25,6 +25,8 @@
       "openssl"
       "mas"
       "bitwarden-cli"
+      "temporal"
+      "encoredev/tap/encore"
     ];
     
     casks = [
@@ -37,8 +39,9 @@
       "mactex"
     ];
       
-    #taps = [
+    taps = [
+      "encoredev/tap"
       # "homebrew/cask-fonts"
-    #];
+    ];
   };
 }
