@@ -10,6 +10,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim";
     secrets = {
       url = "path:./secrets";
       flake = false;
@@ -50,6 +51,9 @@
        nix.settings = {
          experimental-features = "nix-command flakes";
        };
+       security.sudo.extraConfig = ''
+         Defaults pwfeedback
+       '';
        
        # Automatic store optimization
        nix.optimise.automatic = true;

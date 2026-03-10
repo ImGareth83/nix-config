@@ -1,58 +1,58 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
-  # render-markdown.nvim: not in nixpkgs, build from GitHub
-  render-markdown-nvim = pkgs.vimUtils.buildVimPlugin {
-    pname = "render-markdown-nvim";
-    version = "2024-12-20";
-    src = pkgs.fetchFromGitHub {
-      owner = "MeanderingProgrammer";
-      repo = "render-markdown.nvim";
-      rev = "48b4175dbca8439d30c1f52231cbe5a712c8f9d9";
-      hash = "sha256-NJeCT4oEKNwkX3Go1l54jTNExb9CFdrAlcYVcdc6Bfo=";
-    };
-  };
+  postgresLspPackage =
+    if builtins.hasAttr "postgres-language-server" pkgs then pkgs."postgres-language-server"
+    else if builtins.hasAttr "postgres-lsp" pkgs then pkgs."postgres-lsp"
+    else if builtins.hasAttr "postgresql-lsp" pkgs then pkgs."postgresql-lsp"
+    else null;
 in
 {
   # ============================================================================
   # Neovim Configuration
   # ============================================================================
-  programs.neovim = {
+  programs.nixvim = {
     enable = true;
 
-    plugins = with pkgs.vimPlugins; [
-      nvim-treesitter
-      nvim-lspconfig
+    opts = {
+      expandtab = true;
+      tabstop = 2;
+      shiftwidth = 2;
+      softtabstop = 2;
+      smartindent = true;
+      ignorecase = true;
+      background = "dark";
+      number = true;
+      cursorline = true;
+      cursorcolumn = true;
+    };
+
+    extraPlugins = with pkgs.vimPlugins; [
       nvim-web-devicons
-      flash-nvim
       render-markdown-nvim
     ];
 
-    extraConfig = ''
-      set et
-      set ts=2
-      set sw=2
-      set sts=2
-      set si
-      set ic
-      set bg=dark
-      set nu
-      set cursorline
-      set cursorcolumn
-      highlight CursorLine ctermbg=darkgrey guibg=#333333
-      highlight CursorColumn ctermbg=darkgrey guibg=#333333
-    '';
+    extraPackages =
+      [ pkgs.sqls ]
+      ++ lib.optionals (postgresLspPackage != null) [ postgresLspPackage ];
 
-    extraLuaConfig = ''
-      -- Only run if Nix-installed plugins are on rtp (i.e. using Nix-managed nvim)
-      local ok_ts, ts_configs = pcall(require, 'nvim-treesitter.configs')
-      if ok_ts and ts_configs then
-        ts_configs.setup({
-          ensure_installed = { 'markdown', 'markdown_inline', 'sql' },
-          highlight = { enable = true },
-          auto_install = true,
-        })
-      end
+    plugins = {
+      flash.enable = true;
+
+      lsp.enable = true;
+
+      treesitter = {
+        enable = true;
+        settings = {
+          ensure_installed = [ "markdown" "markdown_inline" "sql" ];
+          highlight.enable = true;
+        };
+      };
+    };
+
+    extraConfigLua = ''
+      vim.api.nvim_set_hl(0, 'CursorLine', { ctermbg = 'darkgrey', bg = '#333333' })
+      vim.api.nvim_set_hl(0, 'CursorColumn', { ctermbg = 'darkgrey', bg = '#333333' })
 
       if type(vim.lsp) == 'table'
         and vim.lsp.config ~= nil
@@ -92,7 +92,6 @@ in
 
       local ok_flash, flash = pcall(require, 'flash')
       if ok_flash and flash then
-        flash.setup({})
         vim.keymap.set({ 'n', 'x', 'o' }, 's', function() flash.jump() end, { desc = 'Flash' })
         vim.keymap.set({ 'n', 'x', 'o' }, 'S', function() flash.treesitter() end, { desc = 'Flash Treesitter' })
         vim.keymap.set('o', 'r', function() flash.remote() end, { desc = 'Remote Flash' })

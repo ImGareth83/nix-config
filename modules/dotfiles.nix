@@ -26,6 +26,8 @@
     set -g history-limit 10000
     setw -g mode-keys vi
     set -g set-clipboard on
+    bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "/usr/bin/pbcopy"
     bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "/usr/bin/pbcopy"
+    bind-key -n MouseDown3Pane run-shell -b "pbpaste | tmux load-buffer - && tmux paste-buffer -d"
   '';
 }

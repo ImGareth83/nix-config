@@ -75,6 +75,7 @@
   # Module Imports
   # ============================================================================
   imports = [
+    inputs.nixvim.homeModules.nixvim
     ./modules/packages.nix
     ./modules/shell.nix
     ./modules/programs.nix
