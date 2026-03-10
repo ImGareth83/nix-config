@@ -4,8 +4,13 @@
 - `flake.nix`: Flake entrypoint defining inputs and macOS (nix-darwin) + Home Manager outputs.
 - `home.nix`: Home Manager configuration for user-level settings and module imports.
 - `homebrew.nix`: Homebrew-related nix-darwin configuration.
-- `modules/`: Modular Nix configs (packages, shell, programs, neovim, dotfiles).
+- `modules/`: Modular Nix configs (packages, shell, programs, nixvim-backed neovim, dotfiles).
 - `secrets/`: Local-only inputs consumed by the flake (keep private, no secrets in commits).
+
+## Nixvim Notes
+- Neovim is managed through `inputs.nixvim.homeModules.nixvim` in `home.nix`.
+- Keep editor changes in `modules/neovim.nix` under `programs.nixvim`; do not reintroduce `programs.neovim`.
+- Prefer `programs.nixvim` options, plugin modules, and `extraPackages` before falling back to raw Lua.
 
 ## Build, Test, and Development Commands
 - `darwin-rebuild build --flake .#mbp`: Build the system closure without switching (dry run).

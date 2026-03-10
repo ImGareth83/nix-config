@@ -21,7 +21,7 @@ From the root of this repo:
 2. **Build and activate the configuration (system + Home Manager):**
 
    ```bash
-   darwin-rebuild switch --flake .#mbp
+   sudo darwin-rebuild switch --flake .#mbp
    ```
 
    This will:
@@ -47,7 +47,7 @@ To update flake inputs and then rebuild:
 
 ```bash
 nix flake update
-darwin-rebuild switch --flake .#mbp
+sudo darwin-rebuild switch --flake .#mbp
 ```
 
 ## Common troubleshooting
@@ -55,7 +55,7 @@ darwin-rebuild switch --flake .#mbp
 - **Rollback to previous generation:**
 
   ```bash
-  darwin-rebuild switch --rollback --flake .#mbp
+  sudo darwin-rebuild switch --rollback --flake .#mbp
   ```
 
 - **Garbage collect old Nix store paths (optional cleanup):**
