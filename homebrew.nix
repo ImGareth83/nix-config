@@ -25,6 +25,7 @@
       "openssl"
       "mas"
       "bitwarden-cli"
+      "gitlab-runner"
       "temporal"
       "encoredev/tap/encore"
     ];
