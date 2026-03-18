@@ -26,6 +26,7 @@
       "mas"
       "bitwarden-cli"
       "gitlab-runner"
+      "hashicorp/tap/terraform"
       "temporal"
       "encoredev/tap/encore"
     ];
@@ -41,6 +42,7 @@
     ];
       
     taps = [
+      "hashicorp/tap"
       "encoredev/tap"
       # "homebrew/cask-fonts"
     ];

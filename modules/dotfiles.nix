@@ -5,11 +5,11 @@
   # Dotfiles Management
   # ============================================================================
   home.file.".aws/config" = {
-    source = config._module.args.inputs.secrets + "/aws/config";
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/secrets/aws/config";
   };
 
-  home.file.".aws/credentials" = { 
-    source = config._module.args.inputs.secrets + "/aws/credentials";
+  home.file.".aws/credentials" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/secrets/aws/credentials";
   };
 
   # ============================================================================
