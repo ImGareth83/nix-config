@@ -28,6 +28,9 @@
       # CASE-INSENSITIVE AUTOCOMPLETE
       autoload -Uz compinit && compinit
       zstyle ":completion:*" matcher-list "" "m:{a-zA-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"
+
+      # Keybindings
+      bindkey "^X" backward-kill-line
       
       # Eclipse-style directory navigation (move up directories)
       # Usage: type ".." to go up one directory, "..." to go up two, etc.
