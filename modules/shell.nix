@@ -31,6 +31,10 @@
 
       # Keybindings
       bindkey "^]" backward-kill-line
+      bindkey "^[[1;5D" backward-word
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[5D" backward-word
+      bindkey "^[[5C" forward-word
       
       # Eclipse-style directory navigation (move up directories)
       # Usage: type ".." to go up one directory, "..." to go up two, etc.
