@@ -39,6 +39,7 @@ in
   ]
   # Development tools (conditional)
   ++ lib.optionals enableDevTools [
+    claude-code
     nodejs_22
     pnpm
     jdk21
