@@ -25,7 +25,6 @@
       "openssl"
       "mas"
       "bitwarden-cli"
-      "gitlab-runner"
       "hashicorp/tap/terraform"
       "temporal"
       "encoredev/tap/encore"
