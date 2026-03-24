@@ -42,6 +42,9 @@ in
     claude-code
     nodejs_22
     pnpm
+    uv
+    python310
+    go
     jdk21
     gradle
     maven

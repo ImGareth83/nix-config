@@ -24,6 +24,8 @@ From the root of this repo:
    sudo darwin-rebuild switch --flake .#mbp
    ```
 
+   Use this as the default command whenever you want to rebuild and apply the full nix-darwin system.
+
    This will:
 
    - Apply the `nix-darwin` system configuration for host `mbp`.
@@ -33,13 +35,13 @@ From the root of this repo:
 
 ## Apply only Home Manager (user-level) changes
 
-If you have made **pure Home Manager / user-level changes** (e.g. shell, editor, dotfiles) and do **not** want to rebuild the whole system, you can activate just the Home Manager part:
+If you have made **pure Home Manager / user-level changes** (e.g. shell, editor, dotfiles) and do **not** want to rebuild the whole system, use this command:
 
 ```bash
 home-manager switch --flake .#gareth
 ```
 
-This assumes your Home Manager configuration is exported under the `gareth` profile in the flake (matching `home.username = "gareth";`).
+This is the default command for Home Manager-only changes. It assumes your Home Manager configuration is exported under the `gareth` profile in the flake (matching `home.username = "gareth";`).
 
 ## Updating inputs (nixpkgs, home-manager, etc.)
 

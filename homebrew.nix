@@ -25,12 +25,14 @@
       "openssl"
       "mas"
       "bitwarden-cli"
+      "glab"
       "hashicorp/tap/terraform"
       "temporal"
       "encoredev/tap/encore"
     ];
     
     casks = [
+      "battery"
       "brave-browser"
       "codex"
       "chatgpt"

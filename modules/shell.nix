@@ -26,7 +26,6 @@
       source ${pkgs.zsh-z}/share/zsh-z/zsh-z.plugin.zsh
       
       # CASE-INSENSITIVE AUTOCOMPLETE
-      autoload -Uz compinit && compinit
       zstyle ":completion:*" matcher-list "" "m:{a-zA-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"
 
       # Keybindings
