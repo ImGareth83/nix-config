@@ -8,6 +8,7 @@
     enable = true;
     settings = {
       init.defaultBranch = "main";
+      push.autoSetupRemote = true;
       user = {
         name = "Gareth Fong";
         email = "garethfong@icloud.com";
