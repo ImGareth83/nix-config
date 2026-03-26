@@ -44,6 +44,7 @@ in
     pnpm
     uv
     python310
+    python313Packages.markitdown
     go
     jdk21
     gradle
