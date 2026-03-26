@@ -32,6 +32,7 @@
     casks = [
       "battery"
       "brave-browser"
+      "claude"
       "codex"
       "chatgpt"
       "itsycal"
