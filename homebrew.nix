@@ -27,8 +27,6 @@
       "bitwarden-cli"
       "glab"
       "hashicorp/tap/terraform"
-      "temporal"
-      "encoredev/tap/encore"
     ];
     
     casks = [
@@ -44,7 +42,6 @@
       
     taps = [
       "hashicorp/tap"
-      "encoredev/tap"
       # "homebrew/cask-fonts"
     ];
   };
