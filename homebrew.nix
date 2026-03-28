@@ -6,7 +6,9 @@
   # ============================================================================
   homebrew = {
     enable = true;
-    onActivation.autoUpdate = true;
+    # nix-darwin runs `brew bundle` via its own activation script, so
+    # Home Manager session variables do not control this path.
+    onActivation.autoUpdate = false;
     onActivation.upgrade = true;
 
     masApps = {
