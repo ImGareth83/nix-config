@@ -8,7 +8,7 @@
     enable = true;
     # nix-darwin runs `brew bundle` via its own activation script, so
     # Home Manager session variables do not control this path.
-    onActivation.autoUpdate = false;
+    onActivation.autoUpdate = true;
     onActivation.upgrade = true;
 
     masApps = {
