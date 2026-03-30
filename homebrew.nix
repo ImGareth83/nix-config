@@ -28,6 +28,7 @@
       "mas"
       "bitwarden-cli"
       "glab"
+      "rtk"
       "hashicorp/tap/terraform"
     ];
     
