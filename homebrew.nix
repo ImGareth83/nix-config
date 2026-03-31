@@ -4,6 +4,8 @@
   # ============================================================================
   # Homebrew Configuration
   # ============================================================================
+  environment.variables.HOMEBREW_NO_ANALYTICS = "1";
+
   homebrew = {
     enable = true;
     # nix-darwin runs `brew bundle` via its own activation script, so
