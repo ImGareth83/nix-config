@@ -12,7 +12,8 @@
     shellAliases = {
       k = "kubectl";
       a = "argocd";
-      ll = "ls -golah";  # Moved from initContent to shellAliases (proper location)
+      ls = "ls --color=auto";
+      ll = "ls --color=auto -golah";  # Moved from initContent to shellAliases (proper location)
       "~" = "cd ~";
       workspace = "cd /Users/gareth/workspace";
       phillip = "cd /Users/gareth/workspace/phillip";
