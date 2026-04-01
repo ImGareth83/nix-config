@@ -12,6 +12,7 @@
     shellAliases = {
       k = "kubectl";
       a = "argocd";
+      gstate = "git status -sb && git diff --staged && git log --oneline -5";
       ls = "ls --color=auto";
       ll = "ls --color=auto -golah";  # Moved from initContent to shellAliases (proper location)
       "~" = "cd ~";
