@@ -11,6 +11,17 @@ in
   # User packages
   # ============================================================================
   home.packages = with pkgs; [
+    (writeShellScriptBin "gstate" ''
+      echo '-state-'
+      git status -sb
+      echo '-staged-'
+      git diff --staged
+      echo '-main-'
+      git diff main
+      echo '-log-'
+      git log --oneline -5
+    '')
+
     # Fonts (Nerd Font for terminal/Neovim icons)
     meslo-lgs-nf
 
