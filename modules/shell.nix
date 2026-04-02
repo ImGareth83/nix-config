@@ -43,6 +43,12 @@
       ...() { builtin cd ../..; }
       ....() { builtin cd ../../..; }
       .....() { builtin cd ../../../..; }
+
+      claude-session-ids() {
+        local project_folder
+        project_folder="$(pwd | sed 's#/#-#g')"
+        cat ~/.claude/projects/"$project_folder"/*.jsonl | jq -r .sessionId | sort | uniq
+      }
       
      # echo "[ZSH INIT] Loaded by Home Manager"
     '';
