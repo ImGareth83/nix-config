@@ -21,6 +21,7 @@ in
       softtabstop = 2;
       smartindent = true;
       ignorecase = true;
+      clipboard = "unnamedplus";
       background = "dark";
       number = true;
       cursorline = true;
