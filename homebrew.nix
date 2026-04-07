@@ -38,7 +38,7 @@
       "battery"
       "brave-browser"
       "claude"
-      "claude-code"
+      "claude-code@latest"
       "codex"
       "chatgpt"
       "itsycal"
