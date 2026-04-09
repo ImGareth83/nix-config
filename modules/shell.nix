@@ -44,6 +44,8 @@
       ...() { builtin cd ../..; }
       ....() { builtin cd ../../..; }
       .....() { builtin cd ../../../..; }
+      .claude() { builtin cd /Users/gareth/.claude/; }
+      .codex() { builtin cd /Users/gareth/.codex/; }
 
       claude-session-ids() {
         local project_folder
