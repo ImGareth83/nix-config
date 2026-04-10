@@ -12,6 +12,10 @@
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/secrets/aws/credentials";
   };
 
+  home.file.".config/git/config" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/secrets/git/config";
+  };
+
   # ============================================================================
   # Additional Dotfiles
   # ============================================================================
