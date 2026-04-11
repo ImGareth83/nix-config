@@ -14,8 +14,8 @@
       a = "argocd";
       md = "markitdown";
       gstate = "echo '-state-' && git status -sb && echo '-staged-' && git diff --staged && echo '-main-' && git diff main && echo '-log-'&& git log --oneline -5";
-      ls = "ls --color=auto";
-      ll = "ls --color=auto -golah";  # Moved from initContent to shellAliases (proper location)
+      ls = "ls --color=auto --group-directories-first";
+      ll = "ls --color=auto --group-directories-first -golah";
       "~" = "cd ~";
       workspace = "cd /Users/gareth/workspace";
       phillip = "cd /Users/gareth/workspace/phillip";

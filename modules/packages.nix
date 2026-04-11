@@ -21,6 +21,9 @@ in
       echo '-log-'
       git log --oneline -5
     '')
+    (writeShellScriptBin "ll" ''
+      exec ls --color=auto --group-directories-first -golah "$@"
+    '')
 
     # Fonts (Nerd Font for terminal/Neovim icons)
     meslo-lgs-nf
