@@ -15,7 +15,7 @@
 ## Build, Test, and Development Commands
 - `darwin-rebuild build --flake .#mbp`: Build the system closure without switching (dry run).
 - `darwin-rebuild switch --flake .#mbp`: Build and activate nix-darwin + Home Manager config.
-- `home-manager switch --flake .#gareth@mbp`: Apply only Home Manager changes.
+- `home-manager switch --flake .#gareth`: Apply only Home Manager changes.
 - `nix flake update`: Update pinned inputs; follow with a rebuild.
 - `darwin-rebuild switch --rollback --flake .#mbp`: Roll back to the previous generation.
 
