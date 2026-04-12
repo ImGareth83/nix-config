@@ -14,7 +14,6 @@
       a = "argocd";
       md = "markitdown";
       gstate = "echo '-state-' && git status -sb && echo '-staged-' && git diff --staged && echo '-main-' && git diff main && echo '-log-'&& git log --oneline -5";
-      eza = "eza --tree --level=2 --group-directories-first -a";
       ls = "ls --color=auto --group-directories-first";
       ll = "ls --color=auto --group-directories-first -golah";
       "~" = "cd ~";
@@ -47,6 +46,7 @@
       .....() { builtin cd ../../../..; }
       .claude() { builtin cd /Users/gareth/.claude/; }
       .codex() { builtin cd /Users/gareth/.codex/; }
+      eza() { command eza --tree --level=2 --group-directories-first -a "$@"; }
 
       claude-session-ids() {
         local project_folder
