@@ -14,6 +14,7 @@
       a = "argocd";
       md = "markitdown";
       gstate = "echo '-state-' && git status -sb && echo '-staged-' && git diff --staged && echo '-main-' && git diff main && echo '-log-'&& git log --oneline -5";
+      eza = "eza --tree --level=2 --group-directories-first -a";
       ls = "ls --color=auto --group-directories-first";
       ll = "ls --color=auto --group-directories-first -golah";
       "~" = "cd ~";

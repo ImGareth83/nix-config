@@ -31,6 +31,7 @@ in
     # CLI utilities (always included)
     bat        # prettier `cat`
     coreutils  # GNU tools, including `gls` for `ls --color`
+    eza
     fd         # simpler `find`
     git
     jq
