@@ -46,7 +46,6 @@
       .....() { builtin cd ../../../..; }
       .claude() { builtin cd /Users/gareth/.claude/; }
       .codex() { builtin cd /Users/gareth/.codex/; }
-      eza() { command eza --tree --level=2 --group-directories-first -a "$@"; }
 
       claude-session-ids() {
         local project_folder

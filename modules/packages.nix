@@ -24,6 +24,9 @@ in
     (writeShellScriptBin "ll" ''
       exec ls --color=auto --group-directories-first -golah "$@"
     '')
+    (writeShellScriptBin "eza" ''
+      exec ${pkgs.eza}/bin/eza --tree --level=2 --group-directories-first -a . "$@"
+    '')
 
     # Fonts (Nerd Font for terminal/Neovim icons)
     meslo-lgs-nf
@@ -31,7 +34,6 @@ in
     # CLI utilities (always included)
     bat        # prettier `cat`
     coreutils  # GNU tools, including `gls` for `ls --color`
-    eza
     fd         # simpler `find`
     git
     jq
