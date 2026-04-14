@@ -25,6 +25,7 @@
     };
 
     brews = [
+      "atlassian/homebrew-acli/acli"
       "watch"
       "openssl"
       "python"
@@ -50,6 +51,7 @@
     ];
       
     taps = [
+      "atlassian/homebrew-acli"
       "hashicorp/tap"
       # "homebrew/cask-fonts"
     ];
