@@ -24,6 +24,7 @@ in
       clipboard = "unnamedplus";
       background = "dark";
       number = true;
+      relativenumber = true;
       cursorline = true;
       cursorcolumn = true;
     };
