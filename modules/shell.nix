@@ -27,6 +27,10 @@
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
       source ${pkgs.zsh-z}/share/zsh-z/zsh-z.plugin.zsh
+
+      if [ -f "$HOME/nix/secrets/gitlab/token" ]; then
+        export GITLAB_TOKEN="$(tr -d '\r\n' < "$HOME/nix/secrets/gitlab/token")"
+      fi
       
       # CASE-INSENSITIVE AUTOCOMPLETE
       zstyle ":completion:*" matcher-list "" "m:{a-zA-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"
