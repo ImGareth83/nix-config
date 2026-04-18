@@ -31,6 +31,28 @@
       if [ -f "$HOME/nix/secrets/gitlab/token" ]; then
         export GITLAB_TOKEN="$(tr -d '\r\n' < "$HOME/nix/secrets/gitlab/token")"
       fi
+
+      if [ -f "$HOME/nix/secrets/atlassian/token" ]; then
+        export ATLASSIAN_TOKEN="$(tr -d '\r\n' < "$HOME/nix/secrets/atlassian/token")"
+      fi
+
+      if command -v acli >/dev/null 2>&1; then
+        eval "$(acli completion zsh)"
+      fi
+
+      if command -v glab >/dev/null 2>&1; then
+        eval "$(glab completion -s zsh)"
+      fi
+
+      if [ -r /opt/homebrew/opt/bitwarden-cli/share/zsh/site-functions/_bw ]; then
+        source /opt/homebrew/opt/bitwarden-cli/share/zsh/site-functions/_bw
+      fi
+
+      if command -v terraform >/dev/null 2>&1; then
+        autoload -Uz bashcompinit
+        bashcompinit
+        complete -o nospace -C "$(command -v terraform)" terraform
+      fi
       
       # CASE-INSENSITIVE AUTOCOMPLETE
       zstyle ":completion:*" matcher-list "" "m:{a-zA-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"
@@ -50,6 +72,18 @@
       .....() { builtin cd ../../../..; }
       .claude() { builtin cd /Users/gareth/.claude/; }
       .codex() { builtin cd /Users/gareth/.codex/; }
+
+      acli-jira-login() {
+        if [ -z "$ATLASSIAN_TOKEN" ]; then
+          echo "ATLASSIAN_TOKEN is not set. Populate $HOME/nix/secrets/atlassian/token first." >&2
+          return 1
+        fi
+
+        printf '%s\n' "$ATLASSIAN_TOKEN" | acli jira auth login \
+          --site "symphonyda.atlassian.net" \
+          --email "garethfongkf@phillip.com.sg" \
+          --token
+      }
 
       claude-session-ids() {
         local project_folder
