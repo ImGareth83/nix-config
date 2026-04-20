@@ -36,7 +36,6 @@ in
     coreutils  # GNU tools, including `gls` for `ls --color`
     fd         # simpler `find`
     git
-    glab
     jq
     ripgrep
     tree-sitter

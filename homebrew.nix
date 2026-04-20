@@ -31,6 +31,7 @@
       "python"
       "mas"
       "bitwarden-cli"
+      "glab"
       "poppler"
       "rtk"
       "hashicorp/tap/terraform"
