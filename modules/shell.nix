@@ -85,6 +85,19 @@
           --token
       }
 
+      glab-login() {
+        local token_file
+        token_file="''${1:-$HOME/nix/secrets/gitlab/token}"
+
+        if [ ! -f "$token_file" ]; then
+          echo "Token file not found: $token_file" >&2
+          echo "Usage: glab-login [token-file]" >&2
+          return 1
+        fi
+
+        glab auth login --stdin < "$token_file"
+      }
+
       claude-session-ids() {
         local project_folder
         project_folder="$(pwd | sed 's#/#-#g')"
