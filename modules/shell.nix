@@ -58,7 +58,13 @@
       zstyle ":completion:*" matcher-list "" "m:{a-zA-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"
 
       # Keybindings
-      bindkey "^]" backward-kill-line
+      # Ctrl+[ is the same byte as Esc, so keep Ctrl+U as a reliable fallback.
+      bindkey -M emacs "^[" backward-kill-line
+      bindkey -M viins "^[" backward-kill-line
+      bindkey -M emacs "^U" backward-kill-line
+      bindkey -M viins "^U" backward-kill-line
+      bindkey -M emacs "^]" kill-line
+      bindkey -M viins "^]" kill-line
       bindkey "^[[1;5D" backward-word
       bindkey "^[[1;5C" forward-word
       bindkey "^[[5D" backward-word
