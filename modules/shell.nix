@@ -1,6 +1,14 @@
 { pkgs, config, ... }:
 
 {
+  programs.readline = {
+    enable = true;
+    bindings = {
+      "\\C-u" = "unix-line-discard";
+      "\\C-]" = "kill-line";
+    };
+  };
+
   # ============================================================================
   # Shell configuration (Zsh)
   # ============================================================================
@@ -12,6 +20,8 @@
     shellAliases = {
       k = "kubectl";
       a = "argocd";
+      awssso = "aws sso login --profile sym-stg-1";
+      awswhoami = "aws sts get-caller-identity";
       md = "markitdown";
       gstate = "echo '-state-' && git status -sb && echo '-staged-' && git diff --staged && echo '-main-' && git diff main && echo '-log-'&& git log --oneline -5";
       ls = "ls --color=auto --group-directories-first";
@@ -58,13 +68,13 @@
       zstyle ":completion:*" matcher-list "" "m:{a-zA-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"
 
       # Keybindings
-      # Ctrl+[ is the same byte as Esc, so keep Ctrl+U as a reliable fallback.
-      bindkey -M emacs "^[" backward-kill-line
-      bindkey -M viins "^[" backward-kill-line
+      # Ctrl+[ is the same byte as Esc and cannot be made reliable across tools.
       bindkey -M emacs "^U" backward-kill-line
       bindkey -M viins "^U" backward-kill-line
+      bindkey -M vicmd "^U" backward-kill-line
       bindkey -M emacs "^]" kill-line
       bindkey -M viins "^]" kill-line
+      bindkey -M vicmd "^]" kill-line
       bindkey "^[[1;5D" backward-word
       bindkey "^[[1;5C" forward-word
       bindkey "^[[5D" backward-word

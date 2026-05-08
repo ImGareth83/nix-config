@@ -44,6 +44,7 @@
       "claude-code@latest"
       "codex"
       "chatgpt"
+      "xykong/tap/flux-markdown"
       "itsycal"
       "drawio"
       "maccy"
@@ -53,6 +54,7 @@
     taps = [
       "atlassian/homebrew-acli"
       "hashicorp/tap"
+      "xykong/tap"
       # "homebrew/cask-fonts"
     ];
   };
