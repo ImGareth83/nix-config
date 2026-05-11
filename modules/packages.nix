@@ -54,6 +54,7 @@ in
     awscli2
     kubectl
     argocd
+    tilt
   ]
   # Development tools (conditional)
   ++ lib.optionals enableDevTools [
