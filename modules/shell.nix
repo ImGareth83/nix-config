@@ -6,6 +6,10 @@
     bindings = {
       "\\C-u" = "unix-line-discard";
       "\\C-]" = "kill-line";
+      "\\e[H" = "beginning-of-line";
+      "\\e[F" = "end-of-line";
+      "\\eOH" = "beginning-of-line";
+      "\\eOF" = "end-of-line";
     };
   };
 
@@ -33,7 +37,7 @@
     };
     # Use initContent instead of deprecated initExtra
     initContent = ''
-      export PATH="$HOME/bin:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin:$PATH"
+      export PATH="$HOME/bin:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin:$PATH"
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
       source ${pkgs.zsh-z}/share/zsh-z/zsh-z.plugin.zsh
@@ -79,6 +83,18 @@
       bindkey "^[[1;5C" forward-word
       bindkey "^[[5D" backward-word
       bindkey "^[[5C" forward-word
+      bindkey -M emacs "^[[H" beginning-of-line
+      bindkey -M emacs "^[[F" end-of-line
+      bindkey -M emacs "^[OH" beginning-of-line
+      bindkey -M emacs "^[OF" end-of-line
+      bindkey -M viins "^[[H" beginning-of-line
+      bindkey -M viins "^[[F" end-of-line
+      bindkey -M viins "^[OH" beginning-of-line
+      bindkey -M viins "^[OF" end-of-line
+      bindkey -M vicmd "^[[H" beginning-of-line
+      bindkey -M vicmd "^[[F" end-of-line
+      bindkey -M vicmd "^[OH" beginning-of-line
+      bindkey -M vicmd "^[OF" end-of-line
       
       # Eclipse-style directory navigation (move up directories)
       # Usage: type ".." to go up one directory, "..." to go up two, etc.

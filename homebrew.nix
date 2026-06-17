@@ -1,10 +1,36 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+let
+  homebrewTrust = builtins.toJSON {
+    trustedformulae = [
+      "atlassian/acli/acli"
+      "hashicorp/tap/terraform"
+    ];
+    trustedtaps = [
+      "atlassian/acli"
+      "hashicorp/tap"
+      "xykong/tap"
+    ];
+    trustedcasks = [
+      "xykong/tap/flux-markdown"
+    ];
+  };
+in {
   # ============================================================================
   # Homebrew Configuration
   # ============================================================================
   environment.variables.HOMEBREW_NO_ANALYTICS = "1";
+
+  # nix-darwin runs Homebrew activation before Home Manager and without
+  # XDG_CONFIG_HOME, so seed Homebrew's default trust path first.
+  system.activationScripts.preActivation.text = lib.mkAfter ''
+    install -d -m 700 -o gareth -g staff /Users/gareth/.homebrew
+    cat > /Users/gareth/.homebrew/trust.json <<'EOF'
+    ${homebrewTrust}
+    EOF
+    chown gareth:staff /Users/gareth/.homebrew/trust.json
+    chmod 600 /Users/gareth/.homebrew/trust.json
+  '';
 
   homebrew = {
     enable = true;

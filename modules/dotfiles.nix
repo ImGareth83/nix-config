@@ -1,6 +1,21 @@
 { config, ... }:
 
-{
+let
+  homebrewTrust = builtins.toJSON {
+    trustedformulae = [
+      "atlassian/acli/acli"
+      "hashicorp/tap/terraform"
+    ];
+    trustedtaps = [
+      "atlassian/acli"
+      "hashicorp/tap"
+      "xykong/tap"
+    ];
+    trustedcasks = [
+      "xykong/tap/flux-markdown"
+    ];
+  };
+in {
   # ============================================================================
   # Dotfiles Management
   # ============================================================================
@@ -14,6 +29,15 @@
 
   home.file.".config/git/config" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/secrets/git/config";
+  };
+
+  home.file.".config/homebrew/trust.json" = {
+    text = homebrewTrust;
+    force = true;
+  };
+  home.file.".homebrew/trust.json" = {
+    text = homebrewTrust;
+    force = true;
   };
 
   # ============================================================================

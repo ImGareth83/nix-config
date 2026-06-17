@@ -36,8 +36,10 @@ in
     coreutils  # GNU tools, including `gls` for `ls --color`
     fd         # simpler `find`
     git
+    jaq
     jq
     ripgrep
+    postgresql
     tree-sitter
     pandoc
     tldr
@@ -59,6 +61,7 @@ in
   # Development tools (conditional)
   ++ lib.optionals enableDevTools [
     nodejs_22
+    zx
     pnpm
     uv
     python310
