@@ -69,7 +69,6 @@ in {
       "claude"
       "claude-code@latest"
       "codex"
-      "chatgpt"
       "xykong/tap/flux-markdown"
       "itsycal"
       "drawio"
