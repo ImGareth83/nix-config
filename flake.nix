@@ -72,6 +72,21 @@
        system.primaryUser = "gareth";
        system.configurationRevision = self.rev or self.dirtyRev or null;
 
+       system.defaults.dock = {
+         autohide = true;
+         autohide-delay = 0.0;
+         autohide-time-modifier = 0.0;
+         launchanim = false;
+         mineffect = "scale";
+         minimize-to-application = true;
+       };
+
+       system.defaults.CustomUserPreferences = {
+         "NSGlobalDomain" = {
+           AppleActionOnDoubleClick = "Fill";
+         };
+       };
+
        environment.systemPackages = with pkgs; [ mkalias ];
       }
       
