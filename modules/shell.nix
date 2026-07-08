@@ -49,6 +49,8 @@
       if [ -f "$HOME/nix/secrets/atlassian/token" ]; then
         export ATLASSIAN_TOKEN="$(tr -d '\r\n' < "$HOME/nix/secrets/atlassian/token")"
       fi
+      export JIRA_URL="symphonyda.atlassian.net"
+      export JIRA_EMAIL="garethfongkf@phillip.com.sg"
 
       if command -v acli >/dev/null 2>&1; then
         eval "$(acli completion zsh)"
@@ -112,8 +114,8 @@
         fi
 
         printf '%s\n' "$ATLASSIAN_TOKEN" | acli jira auth login \
-          --site "symphonyda.atlassian.net" \
-          --email "garethfongkf@phillip.com.sg" \
+          --site "$JIRA_URL" \
+          --email "$JIRA_EMAIL" \
           --token
       }
 
