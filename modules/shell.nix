@@ -21,6 +21,13 @@
     enableCompletion = true;
     # Use absolute path constructed from homeDirectory to avoid deprecation warning
     dotDir = "${config.home.homeDirectory}"; # So config goes to ~/.zshrc, not ~/.config/zsh/.zshrc
+    envExtra = ''
+      if [ -f "$HOME/nix/secrets/atlassian/token" ]; then
+        export ATLASSIAN_TOKEN="$(tr -d '\r\n' < "$HOME/nix/secrets/atlassian/token")"
+      fi
+      export JIRA_URL="symphonyda.atlassian.net"
+      export JIRA_EMAIL="garethfongkf@phillip.com.sg"
+    '';
     shellAliases = {
       k = "kubectl";
       a = "argocd";
@@ -45,12 +52,6 @@
       if [ -f "$HOME/nix/secrets/gitlab/token" ]; then
         export GITLAB_TOKEN="$(tr -d '\r\n' < "$HOME/nix/secrets/gitlab/token")"
       fi
-
-      if [ -f "$HOME/nix/secrets/atlassian/token" ]; then
-        export ATLASSIAN_TOKEN="$(tr -d '\r\n' < "$HOME/nix/secrets/atlassian/token")"
-      fi
-      export JIRA_URL="symphonyda.atlassian.net"
-      export JIRA_EMAIL="garethfongkf@phillip.com.sg"
 
       if command -v acli >/dev/null 2>&1; then
         eval "$(acli completion zsh)"
