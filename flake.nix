@@ -6,6 +6,7 @@
   # ============================================================================
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-awscli.url = "github:NixOS/nixpkgs/f205b5574fd0cb7da5b702a2da51507b7f4fdd1b";
     nix-darwin.url = "github:lnl7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
@@ -79,6 +80,10 @@
          launchanim = false;
          mineffect = "scale";
          minimize-to-application = true;
+       };
+
+       system.defaults.NSGlobalDomain = {
+         "com.apple.swipescrolldirection" = false;
        };
 
        system.defaults.CustomUserPreferences = {
