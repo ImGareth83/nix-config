@@ -74,6 +74,7 @@ in {
       "drawio"
       "maccy"
       "mactex"
+      "session-manager-plugin"
     ];
       
     taps = [
