@@ -26,7 +26,7 @@
         export ATLASSIAN_TOKEN="$(tr -d '\r\n' < "$HOME/nix/secrets/atlassian/token")"
       fi
       export JIRA_URL="symphonyda.atlassian.net"
-      export JIRA_EMAIL="garethfongkf@phillip.com.sg"
+      export JIRA_EMAIL="gareth.fong@symphonyda.io"
     '';
     shellAliases = {
       k = "kubectl";
