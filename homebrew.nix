@@ -64,7 +64,6 @@ in {
     ];
     
     casks = [
-      "battery"
       "brave-browser"
       "claude"
       "claude-code@latest"
