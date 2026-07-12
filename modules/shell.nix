@@ -34,6 +34,8 @@
       awssso = "aws sso login --profile sym-stg-1";
       awswhoami = "aws sts get-caller-identity";
       md = "markitdown";
+      brave = "open -a \"Brave Browser\"";
+      safari = "open -a \"Safari\"";
       gstate = "echo '-state-' && git status -sb && echo '-staged-' && git diff --staged && echo '-main-' && git diff main && echo '-log-'&& git log --oneline -5";
       ls = "ls --color=auto --group-directories-first";
       ll = "ls --color=auto --group-directories-first -golah";
