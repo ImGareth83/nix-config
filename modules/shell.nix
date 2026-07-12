@@ -34,8 +34,8 @@
       awssso = "aws sso login --profile sym-stg-1";
       awswhoami = "aws sts get-caller-identity";
       md = "markitdown";
-      brave = "open -a \"Brave Browser\"";
-      safari = "open -a \"Safari\"";
+      brave = "_open_https 'Brave Browser'";
+      safari = "_open_https 'Safari'";
       gstate = "echo '-state-' && git status -sb && echo '-staged-' && git diff --staged && echo '-main-' && git diff main && echo '-log-'&& git log --oneline -5";
       ls = "ls --color=auto --group-directories-first";
       ll = "ls --color=auto --group-directories-first -golah";
@@ -109,6 +109,24 @@
       .....() { builtin cd ../../../..; }
       .claude() { builtin cd /Users/gareth/.claude/; }
       .codex() { builtin cd /Users/gareth/.codex/; }
+
+      _open_https() {
+        local app="$1"
+        local target="$2"
+
+        if [ -z "$target" ]; then
+          echo "Usage: $0 <domain-or-url>" >&2
+          return 1
+        fi
+
+        case "$target" in
+          http://*) target="https://''${target#http://}" ;;
+          https://*) ;;
+          *) target="https://$target" ;;
+        esac
+
+        open -a "$app" "$target"
+      }
 
       acli-jira-login() {
         if [ -z "$ATLASSIAN_TOKEN" ]; then
