@@ -135,21 +135,8 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "nixpkgs-awscli": "nixpkgs-awscli",
-        "nixvim": "nixvim",
-        "secrets": "secrets"
+        "nixvim": "nixvim"
       }
-    },
-    "secrets": {
-      "flake": false,
-      "locked": {
-        "path": "./secrets",
-        "type": "path"
-      },
-      "original": {
-        "path": "./secrets",
-        "type": "path"
-      },
-      "parent": []
     },
     "systems": {
       "locked": {
