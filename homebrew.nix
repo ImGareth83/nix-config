@@ -65,6 +65,7 @@ in {
     
     casks = [
       "brave-browser"
+      "chatgpt"
       "claude"
       "claude-code@latest"
       "codex"

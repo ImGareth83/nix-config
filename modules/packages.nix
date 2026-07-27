@@ -104,7 +104,6 @@ in
   # GUI Applications (only on macOS)
   ++ lib.optionals enableGUIApps [
     dbeaver-bin
-    code-cursor  # Package name is code-cursor, but executable is 'cursor'
     vscode
     jiratui
     pgadmin4-desktopmode
