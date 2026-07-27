@@ -31,7 +31,7 @@
     shellAliases = {
       k = "kubectl";
       a = "argocd";
-      awssso = "aws sso login --profile sym-stg-1";
+      awssso = "aws sso login --sso-session symphonyda";
       awswhoami = "aws sts get-caller-identity";
       md = "markitdown";
       brave = "_open_https 'Brave Browser'";
