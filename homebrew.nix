@@ -64,6 +64,7 @@ in {
     ];
     
     casks = [
+      "bleunlock"
       "brave-browser"
       "chatgpt"
       "claude"
