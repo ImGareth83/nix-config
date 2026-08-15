@@ -84,10 +84,12 @@
       bindkey -M emacs "^]" kill-line
       bindkey -M viins "^]" kill-line
       bindkey -M vicmd "^]" kill-line
-      bindkey "^[[1;5D" backward-word
-      bindkey "^[[1;5C" forward-word
-      bindkey "^[[5D" backward-word
-      bindkey "^[[5C" forward-word
+      # Keep Ctrl+Left/Right available for macOS desktop switching.
+      # Support the common Option+Left/Right terminal escape sequences instead.
+      bindkey "^[b" backward-word
+      bindkey "^[f" forward-word
+      bindkey "^[[1;3D" backward-word
+      bindkey "^[[1;3C" forward-word
       bindkey -M emacs "^[[H" beginning-of-line
       bindkey -M emacs "^[[F" end-of-line
       bindkey -M emacs "^[OH" beginning-of-line
