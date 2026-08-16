@@ -31,6 +31,14 @@ in {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/secrets/git/config";
   };
 
+  home.file.".config/git/ignore" = {
+    force = true;
+    text = ''
+      .DS_Store
+      **/.claude/settings.local.json
+    '';
+  };
+
   home.file.".config/homebrew/trust.json" = {
     text = homebrewTrust;
     force = true;
