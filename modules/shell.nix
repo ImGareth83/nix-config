@@ -84,6 +84,15 @@
       bindkey -M emacs "^]" kill-line
       bindkey -M viins "^]" kill-line
       bindkey -M vicmd "^]" kill-line
+      # Make Option+Backspace stop at punctuation; keep Ctrl+W's default behavior.
+      autoload -Uz backward-kill-word-match
+      zle -N punctuation-backward-kill-word backward-kill-word-match
+      zstyle ':zle:punctuation-backward-kill-word' word-style normal
+      zstyle ':zle:punctuation-backward-kill-word' word-chars ""
+      bindkey -M emacs "^[^?" punctuation-backward-kill-word
+      bindkey -M emacs "^[^H" punctuation-backward-kill-word
+      bindkey -M viins "^[^?" punctuation-backward-kill-word
+      bindkey -M viins "^[^H" punctuation-backward-kill-word
       # Keep Ctrl+Left/Right available for macOS desktop switching.
       # Support the common Option+Left/Right terminal escape sequences instead.
       bindkey "^[b" backward-word
