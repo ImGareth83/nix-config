@@ -91,6 +91,7 @@ in
   # Development tools (conditional)
   ++ lib.optionals enableDevTools [
     cmake
+    protobuf_21
     nodejs_22
     zx
     pnpm
