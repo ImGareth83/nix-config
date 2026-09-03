@@ -90,6 +90,7 @@ in
   ]
   # Development tools (conditional)
   ++ lib.optionals enableDevTools [
+    cmake
     nodejs_22
     zx
     pnpm
