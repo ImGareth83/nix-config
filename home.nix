@@ -1,5 +1,12 @@
 { pkgs, lib, inputs, config, ... }:
 
+let
+  mmapiProtobuf = pkgs.protobuf_21;
+  mmapiThirdLib = pkgs.symlinkJoin {
+    name = "mmapi-thirdlib";
+    paths = [ mmapiProtobuf pkgs.openssl.out pkgs.openssl.dev ];
+  };
+in
 {
   # ============================================================================
   # Basic Configuration
@@ -19,6 +26,8 @@
     XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
     XDG_STATE_HOME = "${config.home.homeDirectory}/.local/state";
     HOMEBREW_AUTO_UPDATE_SECS = "604800"; # weekly
+    API_PROTOC_PATH = "${mmapiProtobuf}/bin/protoc";
+    API_THIRD_LIB_DIR = "${mmapiThirdLib}";
     PATH = "/Library/TeX/texbin:$PATH";
   };
 

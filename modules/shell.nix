@@ -22,6 +22,9 @@
     # Use absolute path constructed from homeDirectory to avoid deprecation warning
     dotDir = "${config.home.homeDirectory}"; # So config goes to ~/.zshrc, not ~/.config/zsh/.zshrc
     envExtra = ''
+      export API_PROTOC_PATH="${config.home.sessionVariables.API_PROTOC_PATH}"
+      export API_THIRD_LIB_DIR="${config.home.sessionVariables.API_THIRD_LIB_DIR}"
+
       if [ -f "$HOME/nix/secrets/atlassian/token" ]; then
         export ATLASSIAN_TOKEN="$(tr -d '\r\n' < "$HOME/nix/secrets/atlassian/token")"
       fi
