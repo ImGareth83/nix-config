@@ -58,10 +58,6 @@
         export GITLAB_TOKEN="$(tr -d '\r\n' < "$HOME/nix/secrets/gitlab/token")"
       fi
 
-      if command -v acli >/dev/null 2>&1; then
-        eval "$(acli completion zsh)"
-      fi
-
       if command -v glab >/dev/null 2>&1; then
         eval "$(glab completion -s zsh)"
       fi
