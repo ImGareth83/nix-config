@@ -49,7 +49,7 @@
     };
     # Use initContent instead of deprecated initExtra
     initContent = ''
-      export PATH="$HOME/bin:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin:$PATH"
+      export PATH="$HOME/.cargo/bin:$HOME/bin:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:/Library/TeX/texbin:$PATH"
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
       source ${pkgs.zsh-z}/share/zsh-z/zsh-z.plugin.zsh

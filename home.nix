@@ -31,6 +31,9 @@ in
     PATH = "/Library/TeX/texbin:$PATH";
   };
 
+  # rustup-installed toolchain (cargo, rustc, clippy, rustfmt)
+  home.sessionPath = [ "${config.home.homeDirectory}/.cargo/bin" ];
+
   # ============================================================================
   # Activation Scripts
   # ============================================================================
