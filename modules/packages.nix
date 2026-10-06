@@ -57,6 +57,15 @@ in
   ]
   # Cloud/DevOps tools (conditional)
   ++ lib.optionals enableCloudTools [
+    azure-cli
+    (writeShellScriptBin "az-symphony" ''
+      export AZURE_CONFIG_DIR="$HOME/.azure-symphony"
+      exec ${pkgs.azure-cli}/bin/az "$@"
+    '')
+    (writeShellScriptBin "az-phillip" ''
+      export AZURE_CONFIG_DIR="$HOME/.azure-phillip"
+      exec ${pkgs.azure-cli}/bin/az "$@"
+    '')
     (awsPkgs.awscli2.overridePythonAttrs (old: rec {
       version = "2.35.0";
       src = awsPkgs.fetchFromGitHub {

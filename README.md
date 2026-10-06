@@ -43,6 +43,35 @@ home-manager switch --flake .#gareth
 
 This is the default command for Home Manager-only changes. It assumes your Home Manager configuration is exported under the `gareth` profile in the flake (matching `home.username = "gareth";`).
 
+## Azure CLI profiles
+
+Use `az-symphony` for symphonyda.io and `az-phillip` for phillip.com.sg.
+Each command keeps its login, selected subscription, and configuration in a
+separate directory (`~/.azure-symphony` and `~/.azure-phillip`).
+
+After applying the configuration, sign in to each organization:
+
+```bash
+az-symphony login
+az-phillip login
+```
+
+Choose the matching organization's account during each login. If needed, pass
+`--tenant <tenant-id>` to select its Microsoft Entra tenant explicitly.
+
+Check or select a subscription independently for each profile:
+
+```bash
+az-symphony account show
+az-phillip account show
+az-symphony account set --subscription <subscription-id>
+az-phillip account set --subscription <subscription-id>
+```
+
+Use the profile command in place of `az` for subsequent operations. Plain `az`
+continues to use its default configuration; these wrappers do not change the
+calling shell's environment.
+
 ## Updating inputs (nixpkgs, home-manager, etc.)
 
 To update flake inputs and then rebuild:
