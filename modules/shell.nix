@@ -35,6 +35,7 @@
       k = "kubectl";
       a = "argocd";
       awssso = "aws sso login --sso-session symphonyda";
+      gitlabsso = "_open_gitlab_sso";
       awswhoami = "aws sts get-caller-identity";
       md = "markitdown";
       brave = "_open_https 'Brave Browser'";
@@ -136,6 +137,16 @@
         esac
 
         open -a "$app" "$target"
+      }
+
+      _open_gitlab_sso() {
+        local url_file="$HOME/nix/secrets/gitlab/sso-url"
+        if [ ! -s "$url_file" ]; then
+          echo "Populate $url_file with your GitLab SSO URL first." >&2
+          return 1
+        fi
+
+        open "$(tr -d '\r\n' < "$url_file")"
       }
 
       acli-jira-login() {
