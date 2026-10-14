@@ -9,9 +9,11 @@ let
     trustedtaps = [
       "atlassian/acli"
       "hashicorp/tap"
+      "sametkum/klustr"
       "xykong/tap"
     ];
     trustedcasks = [
+      "sametkum/klustr/klustr"
       "xykong/tap/flux-markdown"
     ];
   };

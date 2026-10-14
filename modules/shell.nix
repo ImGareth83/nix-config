@@ -40,6 +40,7 @@
       md = "markitdown";
       brave = "_open_https 'Brave Browser'";
       safari = "_open_https 'Safari'";
+      jira = "_open_jira";
       gstate = "echo '-state-' && git status -sb && echo '-staged-' && git diff --staged && echo '-main-' && git diff main && echo '-log-'&& git log --oneline -5";
       ls = "ls --color=auto --group-directories-first";
       ll = "ls --color=auto --group-directories-first -golah";
@@ -137,6 +138,20 @@
         esac
 
         open -a "$app" "$target"
+      }
+
+      _open_jira() {
+        # Return codes: 0 = opened, 1 = open failed, 2 = invalid arguments.
+        if [ "$#" -ne 1 ] || [ -z "$1" ]; then
+          echo "Usage: jira <JIRA-id>" >&2
+          return 2
+        fi
+
+        if ! open "https://symphonyda.atlassian.net/browse/$1"; then
+          return 1
+        fi
+
+        return 0
       }
 
       _open_gitlab_sso() {

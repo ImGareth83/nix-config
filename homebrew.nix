@@ -9,9 +9,11 @@ let
     trustedtaps = [
       "atlassian/acli"
       "hashicorp/tap"
+      "sametkum/klustr"
       "xykong/tap"
     ];
     trustedcasks = [
+      "sametkum/klustr/klustr"
       "xykong/tap/flux-markdown"
     ];
   };
@@ -25,11 +27,13 @@ in {
   # XDG_CONFIG_HOME, so seed Homebrew's default trust path first.
   system.activationScripts.preActivation.text = lib.mkAfter ''
     install -d -m 700 -o gareth -g staff /Users/gareth/.homebrew
-    cat > /Users/gareth/.homebrew/trust.json <<'EOF'
+    trust_tmp=$(mktemp /Users/gareth/.homebrew/trust.json.XXXXXX)
+    cat > "$trust_tmp" <<'EOF'
     ${homebrewTrust}
     EOF
-    chown gareth:staff /Users/gareth/.homebrew/trust.json
-    chmod 600 /Users/gareth/.homebrew/trust.json
+    chown gareth:staff "$trust_tmp"
+    chmod 600 "$trust_tmp"
+    mv -f "$trust_tmp" /Users/gareth/.homebrew/trust.json
   '';
 
   homebrew = {
@@ -37,7 +41,9 @@ in {
     # nix-darwin runs `brew bundle` via its own activation script, so
     # Home Manager session variables do not control this path.
     onActivation.autoUpdate = true;
-    onActivation.upgrade = true;
+    # Keep system activation independent of Homebrew package upgrades.
+    # Run `brew upgrade` separately when the required Xcode is available.
+    onActivation.upgrade = false;
 
     masApps = {
       "Amphetamine" = 937984704;
@@ -72,6 +78,7 @@ in {
       "codex"
       "xykong/tap/flux-markdown"
       "itsycal"
+      "sametkum/klustr/klustr"
       "drawio"
       "maccy"
       "mactex"
@@ -81,6 +88,7 @@ in {
     taps = [
       "atlassian/homebrew-acli"
       "hashicorp/tap"
+      "sametkum/klustr"
       "xykong/tap"
       # "homebrew/cask-fonts"
     ];
