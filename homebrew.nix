@@ -36,17 +36,27 @@ in {
     mv -f "$trust_tmp" /Users/gareth/.homebrew/trust.json
   '';
 
+  # Explicitly upgrade Codex after Homebrew processes the declared casks.
+  system.activationScripts.postActivation.text = lib.mkAfter ''
+    if [ -x /opt/homebrew/bin/brew ]; then
+      echo "Upgrading Codex..." >&2
+      sudo --user=gareth --set-home \
+        /opt/homebrew/bin/brew upgrade --cask codex
+    fi
+  '';
+
   homebrew = {
     enable = true;
     # nix-darwin runs `brew bundle` via its own activation script, so
     # Home Manager session variables do not control this path.
     onActivation.autoUpdate = true;
-    # Keep system activation independent of Homebrew package upgrades.
-    # Run `brew upgrade` separately when the required Xcode is available.
-    onActivation.upgrade = false;
+    # Upgrade declared Homebrew packages and App Store apps on activation.
+    onActivation.upgrade = true;
 
     masApps = {
       "Amphetamine" = 937984704;
+      "Bitwarden" = 1352778147;
+      "Xcode" = 497799835;
       "Whatsapp" = 310633997;
       "Wechat" = 836500024;
       "Telegram" = 747648890;
