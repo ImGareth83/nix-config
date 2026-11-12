@@ -4,10 +4,12 @@ let
   homebrewTrust = builtins.toJSON {
     trustedformulae = [
       "atlassian/acli/acli"
+      "auth0/auth0-cli/auth0"
       "hashicorp/tap/terraform"
     ];
     trustedtaps = [
       "atlassian/acli"
+      "auth0/auth0-cli"
       "hashicorp/tap"
       "sametkum/klustr"
       "xykong/tap"
@@ -68,6 +70,7 @@ in {
 
     brews = [
       "atlassian/homebrew-acli/acli"
+      "auth0/auth0-cli/auth0"
       "watch"
       "openssl"
       "python"
@@ -97,6 +100,7 @@ in {
       
     taps = [
       "atlassian/homebrew-acli"
+      "auth0/auth0-cli"
       "hashicorp/tap"
       "sametkum/klustr"
       "xykong/tap"
