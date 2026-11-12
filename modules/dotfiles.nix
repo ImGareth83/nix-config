@@ -38,6 +38,7 @@ in {
     text = ''
       .DS_Store
       **/.claude/settings.local.json
+      **/.claude/worktrees/
     '';
   };
 
